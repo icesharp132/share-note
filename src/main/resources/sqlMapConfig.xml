@@ -4,5 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
+        <typeAlias type="com.lzh.sharenote.dal.pojo.UserDo" alias="UserDo" />
     </typeAliases>
 </configuration>
