@@ -3,15 +3,15 @@
 <mapper namespace="userMapper" >
 
     <sql id="Base_Column_List" >
-        id, uname,pwd, realName,role,status,addtime,updatetime
+        id, uname,pwd, nickName,role,status,addtime,updatetime
     </sql>
 
     <insert id="insert" parameterType="UserDo" >
         <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into t_user (id, uname,pwd, realName,role,status,departmentName,addtime,updatetime)
-        values (#{id},#{uname},#{pwd},#{realName},#{role}, #{status}, #{addtime},#{updatetime})
+        insert into t_user (id, uname,pwd, nickName,role,status,departmentName,addtime,updatetime)
+        values (#{id},#{uname},#{pwd},#{nickName},#{role}, #{status}, #{addtime},#{updatetime})
     </insert>
 
     <select id="selectUserById" resultType="UserDo" >
@@ -34,7 +34,7 @@
         UPDATE t_user set
         uname = #{uname},
         pwd = #{pwd},
-        realName = #{realName},
+        nickName = #{nickName},
         role = #{role},
         status = #{status},
         addtime = #{addtime},

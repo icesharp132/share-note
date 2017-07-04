@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by luzhoahui on 2017/6/24.
  */
-public class UserDo {
+public class AttachmentDo {
 
     private long id;
 
