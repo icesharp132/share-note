@@ -10,7 +10,7 @@
         <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into t_note (id, note_id, title, description, file_uri, status, addtime)
+        insert into t_attachment (id, note_id, title, description, file_uri, status, addtime)
         values (#{id},#{noteId},#{title},#{description},#{file_uri}, #{status}, #{addtime})
     </insert>
 
@@ -19,18 +19,14 @@
     </select>
 
     <select id="selectByNoteId" resultType="AttachmentDo" >
-        SELECT * FROM t_attachment WHERE uname = #{uname} AND pwd = #{pwd}
-    </select>
-
-    <select id="selectByUname" resultType="AttachmentDo" >
-        SELECT * FROM t_attachment WHERE uname = #{uname}
+        SELECT * FROM t_attachment WHERE note_id = #{noteId}
     </select>
 
     <delete id="deleteById" parameterType="Map">
         DELETE FROM t_attachment where id = #{id}
     </delete>
 
-    <update id="updateById" parameterType="Map">
+    <update id="updateStatusByNoteId" parameterType="Map">
         UPDATE t_attachment set
         status = #{status} where note_id=#{noteId}
     </update>

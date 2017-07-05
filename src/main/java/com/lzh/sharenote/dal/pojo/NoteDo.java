@@ -5,20 +5,21 @@ import java.util.Date;
 /**
  * Created by luzhoahui on 2017/6/24.
  */
-public class AttachmentDo {
-    private long id;
+public class NoteDo {
 
-    private String noteId;
+    private long id;
 
     private String title;
 
-    private String description;
+    private String content;
 
-    private String file_uri;
+    private String userId;
 
     private int status;
 
     private Date addtime;
+
+    private Date updatetime;
 
     public long getId() {
         return id;
@@ -26,14 +27,6 @@ public class AttachmentDo {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getNoteId() {
-        return noteId;
-    }
-
-    public void setNoteId(String noteId) {
-        this.noteId = noteId;
     }
 
     public String getTitle() {
@@ -44,20 +37,20 @@ public class AttachmentDo {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getContent() {
+        return content;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public String getFile_uri() {
-        return file_uri;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setFile_uri(String file_uri) {
-        this.file_uri = file_uri;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public int getStatus() {
@@ -74,5 +67,13 @@ public class AttachmentDo {
 
     public void setAddtime(Date addtime) {
         this.addtime = addtime;
+    }
+
+    public Date getUpdatetime() {
+        return updatetime;
+    }
+
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
     }
 }
