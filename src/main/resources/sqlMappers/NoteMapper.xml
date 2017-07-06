@@ -19,16 +19,21 @@
     </select>
 
     <select id="selectByUserId" resultType="NoteDo" >
-        SELECT * FROM t_note WHERE user_id = #{userId}
+        SELECT * FROM t_note WHERE user_id = #{userId} ORDER BY addtime DESC limit #{offset}, #{size}
+    </select>
+
+    <select id="selectBetweenDate" resultType="NoteDo" >
+        SELECT * FROM t_note WHERE <![CDATA[ addtime >= #{starttime} ]]> AND <![CDATA[ addtime <= #{endtime} ]]>
+            ORDER BY addtime DESC limit #{offset}, #{size}
     </select>
 
     <delete id="deleteById" parameterType="Map">
-        DELETE FROM t_note where id = #{id}
+        DELETE FROM t_note WHERE id = #{id}
     </delete>
 
     <update id="updateStatusByNoteId" parameterType="Map">
-        UPDATE t_note set
-        status = #{status} where note_id=#{noteId}
+        UPDATE t_note SET
+        status = #{status} WHERE note_id=#{noteId}
     </update>
 
     <update id="updateById" parameterType="NoteDo">

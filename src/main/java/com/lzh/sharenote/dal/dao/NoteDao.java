@@ -1,5 +1,6 @@
 package com.lzh.sharenote.dal.dao;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,7 @@ import com.lzh.sharenote.dal.pojo.NoteDo;
 @Repository("noteDao")
 public class NoteDao extends AbstractBaseDao {
    
-    public long insert(NoteDo note) throws Exception {
+    public long insert(NoteDo note) {
         SqlSession session = sqlSessionFactory.openSession(true);
         try {
             session.insert("noteMapper.insert",note);
@@ -28,58 +29,48 @@ public class NoteDao extends AbstractBaseDao {
     }
 
    
-    public int update(NoteDo note) throws Exception {
+    public int update(NoteDo note) {
         SqlSession session = sqlSessionFactory.openSession(true);
-        int flag = 0;
-        try {
-            flag = session.update("noteMapper.updateById",note);
-        }finally {
-            session.commit();
-            session.close();
-        }
+        int flag = session.update("noteMapper.updateById",note);
         return flag;
     }
 
-    public NoteDo select(long id) throws Exception {
+    public NoteDo select(long id) {
         Map idMap = new HashMap();
         idMap.put("id",id);
         SqlSession session = sqlSessionFactory.openSession(true);
-        NoteDo beanList;
-        try {
-            beanList = session.selectOne("noteMapper.selectById",idMap);
-        }finally {
-            session.commit();
-            session.close();
-        }
+        NoteDo beanList = session.selectOne("noteMapper.selectById",idMap);
         return beanList;
     }
 
-    public List<NoteDo> selectByUserId(long userId) throws Exception {
+    public List<NoteDo> selectByUserId(long userId, int offset, int size) {
         Map idMap = new HashMap();
         idMap.put("userId",userId);
+        idMap.put("offset",offset);
+        idMap.put("size",size);
         SqlSession session = sqlSessionFactory.openSession(true);
-        List<NoteDo> beanList;
-        try {
-            beanList = session.selectList("noteMapper.selectByUserId",idMap);
-        }finally {
-            session.commit();
-            session.close();
-        }
+        List<NoteDo> beanList = session.selectList("noteMapper.selectByUserId",idMap);
         return beanList;
     }
 
-    public int deleteByNoteId(long noteId) throws Exception {
+    public List<NoteDo> selectBetweenDate(Date starttime, Date endtime, int offset, int size) {
+        Map idMap = new HashMap();
+        idMap.put("starttime",starttime);
+        idMap.put("endtime",endtime);
+        idMap.put("offset",offset);
+        idMap.put("size",size);
+        SqlSession session = sqlSessionFactory.openSession(true);
+        List<NoteDo> beanList;
+        beanList = session.selectList("noteMapper.selectByUserId",idMap);
+        return beanList;
+    }
+
+    public int deleteByNoteId(long noteId) {
         Map idMap = new HashMap();
         idMap.put("noteId",noteId);
         idMap.put("status", NoteStatusEnum.DELETE.getCode());
         SqlSession session = sqlSessionFactory.openSession(true);
-        int flag = 0;
-        try {
-            flag = session.delete("noteMapper.updateStatusByNoteId",idMap);
-        }finally {
-            session.commit();
-            session.close();
-        }
+        int flag = session.delete("noteMapper.updateStatusByNoteId",idMap);
         return flag;
     }
 }
