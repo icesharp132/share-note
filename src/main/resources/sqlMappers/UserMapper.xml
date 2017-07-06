@@ -39,6 +39,7 @@
         status = #{status},
         addtime = #{addtime},
         updatetime = #{updatetime}
+        where id = #{id}
     </update>
 
 </mapper>

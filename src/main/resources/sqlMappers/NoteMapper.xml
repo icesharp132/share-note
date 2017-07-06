@@ -26,9 +26,22 @@
         DELETE FROM t_note where id = #{id}
     </delete>
 
-    <update id="updateStatusByUserId" parameterType="Map">
+    <update id="updateStatusByNoteId" parameterType="Map">
         UPDATE t_note set
-        status = #{status} where user_id=#{userId}
+        status = #{status} where note_id=#{noteId}
+    </update>
+
+    <update id="updateById" parameterType="NoteDo">
+        UPDATE t_note
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null">title = #{title},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="role != null">role = #{role},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="addtime != null">addtime = #{addtime},</if>
+            <if test="updatetime != null">updatetime = #{updatetime},</if>
+        </trim>
+        WHERE id=#{id}
     </update>
 
 </mapper>
