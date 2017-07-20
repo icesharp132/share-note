@@ -43,10 +43,10 @@ public class LoginController {
                 res.setMsg("用户名或密码错误");
                 return res;
             }
-            request.getSession().setAttribute("user_id", String.valueOf(bean.getId()));
-            request.getSession().setAttribute("user_name", uname);
-            request.getSession().setAttribute("user_role", bean.getRole());
-            request.getSession().setAttribute("nick_name", bean.getNickName());
+            request.getSession().setAttribute("userId", String.valueOf(bean.getId()));
+            request.getSession().setAttribute("userName", uname);
+            request.getSession().setAttribute("userRole", bean.getRole());
+            request.getSession().setAttribute("nickName", bean.getNickName());
             res.setCode(HttpCodeEnum.SUCCESS.getCode());
             res.setMsg(HttpCodeEnum.SUCCESS.getDesc());
             return res;

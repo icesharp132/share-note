@@ -18,7 +18,6 @@ import com.lzh.sharenote.dal.pojo.NoteDo;
 public class NoteDao extends AbstractBaseDao {
    
     public long insert(NoteDo note) {
-        SqlSession session = sqlSessionFactory.openSession(true);
         try {
             session.insert("noteMapper.insert",note);
         }finally {
@@ -30,7 +29,6 @@ public class NoteDao extends AbstractBaseDao {
 
    
     public int update(NoteDo note) {
-        SqlSession session = sqlSessionFactory.openSession(true);
         int flag = session.update("noteMapper.updateById",note);
         return flag;
     }
@@ -38,18 +36,16 @@ public class NoteDao extends AbstractBaseDao {
     public NoteDo select(long id) {
         Map idMap = new HashMap();
         idMap.put("id",id);
-        SqlSession session = sqlSessionFactory.openSession(true);
         NoteDo beanList = session.selectOne("noteMapper.selectById",idMap);
         return beanList;
     }
 
-    public List<NoteDo> selectByUserId(long userId, int offset, int size) {
+    public List<NoteDo> listByUserId(long userId, int offset, int size) {
         Map idMap = new HashMap();
         idMap.put("userId",userId);
         idMap.put("offset",offset);
         idMap.put("size",size);
-        SqlSession session = sqlSessionFactory.openSession(true);
-        List<NoteDo> beanList = session.selectList("noteMapper.selectByUserId",idMap);
+        List<NoteDo> beanList = session.selectList("noteMapper.listByUserId",idMap);
         return beanList;
     }
 
@@ -59,7 +55,6 @@ public class NoteDao extends AbstractBaseDao {
         idMap.put("endtime",endtime);
         idMap.put("offset",offset);
         idMap.put("size",size);
-        SqlSession session = sqlSessionFactory.openSession(true);
         List<NoteDo> beanList;
         beanList = session.selectList("noteMapper.selectByUserId",idMap);
         return beanList;
@@ -69,7 +64,6 @@ public class NoteDao extends AbstractBaseDao {
         Map idMap = new HashMap();
         idMap.put("noteId",noteId);
         idMap.put("status", NoteStatusEnum.DELETE.getCode());
-        SqlSession session = sqlSessionFactory.openSession(true);
         int flag = session.delete("noteMapper.updateStatusByNoteId",idMap);
         return flag;
     }

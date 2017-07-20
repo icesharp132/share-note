@@ -17,7 +17,6 @@ import com.lzh.sharenote.enums.NoteStatusEnum;
 public class AttachmentDao extends AbstractBaseDao {
    
     public long insert(AttachmentDo note) throws Exception {
-        SqlSession session = sqlSessionFactory.openSession(true);
         try {
             session.insert("attachmentMapper.insert",note);
         }finally {
@@ -29,7 +28,6 @@ public class AttachmentDao extends AbstractBaseDao {
 
    
     public int update(AttachmentDo attachmentDo) throws Exception {
-        SqlSession session = sqlSessionFactory.openSession(true);
         int flag = 0;
         try {
             flag = session.update("attachmentMapper.updateById",attachmentDo);
@@ -43,7 +41,6 @@ public class AttachmentDao extends AbstractBaseDao {
     public AttachmentDo select(long id) throws Exception {
         Map idMap = new HashMap();
         idMap.put("id",id);
-        SqlSession session = sqlSessionFactory.openSession(true);
         AttachmentDo beanList;
         try {
             beanList = session.selectOne("attachmentMapper.selectById",idMap);
@@ -57,7 +54,6 @@ public class AttachmentDao extends AbstractBaseDao {
     public List<AttachmentDo> selectByNoteId(long noteId) throws Exception {
         Map idMap = new HashMap();
         idMap.put("noteId",noteId);
-        SqlSession session = sqlSessionFactory.openSession(true);
         List<AttachmentDo> beanList;
         try {
             beanList = session.selectList("attachmentMapper.selectByNoteId",idMap);
@@ -72,7 +68,6 @@ public class AttachmentDao extends AbstractBaseDao {
         Map idMap = new HashMap();
         idMap.put("noteId",noteId);
         idMap.put("status", NoteStatusEnum.DELETE.getCode());
-        SqlSession session = sqlSessionFactory.openSession(true);
         int flag = 0;
         try {
             flag = session.delete("attachmentMapper.updateStatusByNoteId",idMap);

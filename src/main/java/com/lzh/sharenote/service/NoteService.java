@@ -18,10 +18,13 @@ public class NoteService {
     @Autowired
     NoteDao noteDao;
 
-    public List<NoteDo> listRecentNote(int day, int count) {
-        Date enddate = new Date();
-        Date startdate = DateUtils.addDays(enddate, 0-day);
-        List<NoteDo> noteDoList = noteDao.selectBetweenDate(startdate, enddate, 0, count);
+    public List<NoteDo> listRecentNote(long uid,int offset, int count) {
+        List<NoteDo> noteDoList = noteDao.listByUserId(uid, offset, count);
+        return  noteDoList;
+    }
+
+    public List<NoteDo> listNoteBetweenDate(Date startDate, Date endDate, int count) {
+        List<NoteDo> noteDoList = noteDao.selectBetweenDate(startDate, endDate, 0, count);
         return  noteDoList;
     }
 }

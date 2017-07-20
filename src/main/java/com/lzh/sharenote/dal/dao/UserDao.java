@@ -15,7 +15,6 @@ import java.util.Map;
 public class UserDao extends AbstractBaseDao {
    
     public int insert(UserDo user) throws Exception {
-        SqlSession session = sqlSessionFactory.openSession(true);
         try {
             session.insert("userMapper.insert",user);
         }finally {
@@ -27,7 +26,6 @@ public class UserDao extends AbstractBaseDao {
 
    
     public int update(UserDo user) throws Exception {
-        SqlSession session = sqlSessionFactory.openSession(true);
         int flag = 0;
         try {
             flag = session.update("userMapper.updateById",user);
@@ -42,7 +40,6 @@ public class UserDao extends AbstractBaseDao {
     public UserDo select(long id) throws Exception {
         Map idMap = new HashMap();
         idMap.put("id",id);
-        SqlSession session = sqlSessionFactory.openSession(true);
         List<UserDo> beanList;
         try {
             beanList = session.selectList("userMapper.selectUserById",idMap);
@@ -57,7 +54,6 @@ public class UserDao extends AbstractBaseDao {
     public int delete(long id) throws Exception {
         Map idMap = new HashMap();
         idMap.put("id",id);
-        SqlSession session = sqlSessionFactory.openSession(true);
         int flag = 0;
         try {
             flag = session.delete("userMapper.deleteUserById",idMap);
@@ -73,7 +69,6 @@ public class UserDao extends AbstractBaseDao {
         Map idMap = new HashMap();
         idMap.put("pwd",pwd);
         idMap.put("uname",uname);
-        SqlSession session = sqlSessionFactory.openSession(true);
         List<UserDo> beanList;
         try {
             beanList = session.selectList("userMapper.selectUserByUnameAndPwd",idMap);
@@ -90,7 +85,6 @@ public class UserDao extends AbstractBaseDao {
     public UserDo selectUserByUname(String uname) throws Exception {
         Map idMap = new HashMap();
         idMap.put("uname",uname);
-        SqlSession session = sqlSessionFactory.openSession(true);
         List<UserDo> beanList;
         try {
             beanList = session.selectList("userMapper.selectUserByUname",idMap);

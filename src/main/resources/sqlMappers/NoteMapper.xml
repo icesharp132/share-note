@@ -18,7 +18,7 @@
         SELECT * FROM t_note WHERE id = #{id}
     </select>
 
-    <select id="selectByUserId" resultType="NoteDo" >
+    <select id="listByUserId" resultType="NoteDo" >
         SELECT * FROM t_note WHERE user_id = #{userId} ORDER BY addtime DESC limit #{offset}, #{size}
     </select>
 
