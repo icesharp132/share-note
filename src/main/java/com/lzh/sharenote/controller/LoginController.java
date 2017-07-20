@@ -88,7 +88,7 @@ public class LoginController {
         }
         String uname = request.getParameter("uname");
         String pwd = request.getParameter("pwd");
-        String nickName = request.getParameter("nick_name");
+        String nickName = request.getParameter("nickname");
         String role = request.getParameter("role");
 
         if(StringUtils.isBlank(uname)){
@@ -145,7 +145,7 @@ public class LoginController {
 
 
     public boolean ifAuth(HttpServletRequest request){
-        String loginId = (String) request.getSession().getAttribute("loginId");
+        String loginId = (String) request.getSession().getAttribute("userId");
         if (StringUtils.isBlank(loginId))
             return false;
         try {

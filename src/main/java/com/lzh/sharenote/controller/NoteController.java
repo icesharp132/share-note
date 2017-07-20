@@ -41,8 +41,9 @@ public class NoteController {
 
     @RequestMapping("/userrecent/")
     public @ResponseBody String recent(HttpServletRequest request, HttpServletResponse response){
-        request.getSession().getAttribute("userId");
-        List<NoteDo> noteDoList = noteService.listRecentNote(startDate, endDate, 10);
+        int current = 0;
+        long userId = Long.parseLong(request.getSession().getAttribute("userId").toString());
+        List<NoteDo> noteDoList = noteService.listRecentNote(userId, current, 10);
         return JSON.toJSONString(noteDoList);
     }
 }
