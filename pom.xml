@@ -100,6 +100,12 @@
     </dependency>
 
     <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.25</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
       <version>3.2.8</version>
@@ -156,7 +162,7 @@
           <scanIntervalSeconds>0</scanIntervalSeconds>
           <connectors>
             <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-              <port>80</port>
+              <port>8080</port>
               <maxIdleTime>60000</maxIdleTime>
             </connector>
           </connectors>

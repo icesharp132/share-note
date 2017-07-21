@@ -10,7 +10,7 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://127.0.0.1:3306/sharenote?connectTimeout=1000&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
         <property name="username" value="root"/>
-        <property name="password" value="123456a?"/>
+        <property name="password" value=""/>
         <property name="maxActive" value="20"/>
         <property name="initialSize" value="8"/>
         <property name="minIdle" value="8"/>
